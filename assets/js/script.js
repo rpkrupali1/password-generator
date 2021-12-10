@@ -1,4 +1,4 @@
-// Assignment code here
+// get length of password and provide error for invalid values
 var getLength = function(){
   var length = window.prompt("Please choose the length of the password between 8 and 128 characters");
   if(!length || parseInt(length) < 8 || parseInt(length) > 128){
@@ -9,6 +9,7 @@ var getLength = function(){
   return length;
 }
 
+// define character type values in object.
 var chracterType = function() {
   var charType = {
     lowercase : window.confirm("Would you like to include lower case?"),
@@ -19,6 +20,7 @@ var chracterType = function() {
   return charType;
 };
 
+//based on character type set the value of character
 var getCharSet = function(charType){
   var charSet = "";
   if(charType.lowercase)
@@ -57,10 +59,10 @@ var generateBtn = document.querySelector("#generate");
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
+  if(!password)
+    password = "Your Secure Password"
   var passwordText = document.querySelector("#password");
-
   passwordText.value = password;
-
 }
 
 // Add event listener to generate button
