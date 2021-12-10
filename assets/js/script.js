@@ -8,10 +8,33 @@ var getLength = function(){
   }
 }
 
+/*
+var chracterType = {
+  lowercase : window.confirm("Would you like to include lower case?"),
+  uppercase : window.confirm("would you like to include upper case?"),
+  numeric : window.confirm("would you like to include numeric values?"),
+  specialCharacter : window.confirm("would you like to to include special character?")
+};
+*/
+
+var chracterType = function() {
+  var charType = {
+    lowercase : window.confirm("Would you like to include lower case?"),
+    uppercase : window.confirm("would you like to include upper case?"),
+    numeric : window.confirm("would you like to include numeric values?"),
+    specialCharacter : window.confirm("would you like to to include special character?")
+  };
+  return charType;
+};
+
 //gnerate password main function to be called on button click
 var generatePassword = function(){
-  getLength();
-
+  var inputLength = getLength();
+  var charTpe = chracterType();
+  while(!Object.values(charTpe).includes(true)){
+    window.alert("You will have to have atleast select one character type which is lower case, upper case, numeric and or special character.");
+    charTpe = chracterType();
+  }
 }
 
 
