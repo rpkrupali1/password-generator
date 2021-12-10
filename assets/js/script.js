@@ -6,16 +6,8 @@ var getLength = function(){
     if(length)
       getLength();
   }
+  return length;
 }
-
-/*
-var chracterType = {
-  lowercase : window.confirm("Would you like to include lower case?"),
-  uppercase : window.confirm("would you like to include upper case?"),
-  numeric : window.confirm("would you like to include numeric values?"),
-  specialCharacter : window.confirm("would you like to to include special character?")
-};
-*/
 
 var chracterType = function() {
   var charType = {
@@ -27,14 +19,35 @@ var chracterType = function() {
   return charType;
 };
 
+var getCharSet = function(charType){
+  var charSet = "";
+  if(charType.lowercase)
+    charSet += "abcdefghijklmnopqrstuvwxyz";
+  if(charType.uppercase)
+    charSet += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  if(charType.numeric)
+    charSet += "0123456789";
+  if(charType.specialCharacter)
+    charSet += "!@#$%^&*()_+~`|}{[]:;?><,./-=";
+  return charSet;
+}
+
 //gnerate password main function to be called on button click
 var generatePassword = function(){
   var inputLength = getLength();
-  var charTpe = chracterType();
-  while(!Object.values(charTpe).includes(true)){
-    window.alert("You will have to have atleast select one character type which is lower case, upper case, numeric and or special character.");
-    charTpe = chracterType();
+  if(!inputLength) return;
+  var charType = chracterType();
+  while(!Object.values(charType).includes(true)){
+    var confirm = window.alert("You will have to have atleast select one character type which is lower case, upper case, numeric and or special character. Would you like to continue?");
+    if(!confirm) return;
+    charType = chracterType();
   }
+  var charSet = getCharSet(charType);
+  var password = "";
+  for (let i = 0; i < inputLength; ++i) {
+    password += charSet.charAt(Math.floor(Math.random() * charSet.length));
+  }
+  return password;
 }
 
 
