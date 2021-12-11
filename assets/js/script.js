@@ -1,10 +1,12 @@
 // get length of password and provide error for invalid values
 var getLength = function(){
   var length = window.prompt("Please choose the length of the password between 8 and 128 characters");
-  if(!length || parseInt(length) < 8 || parseInt(length) > 128 || isNaN(parseInt(length))){
+  while(!length || parseInt(length) < 8 || parseInt(length) > 128 || isNaN(parseInt(length))){
     length = window.confirm("You have entered incorrect value. Valid values are between numbers 8 and 128. Would you like to proceed with valid values?");
-    if(length)
-      getLength();
+    if(!length)
+      return length;
+    else
+    length = window.prompt("Please choose the length of the password between 8 and 128 characters");
   }
   return length;
 }
